@@ -1,0 +1,17 @@
+name: Purge Cache
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  purge-cache:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Purge Cache
+        env:
+          JSDELIVR_PURGE_URL: https://purge.jsdelivr.net/gh/corolair/prod-tutor-widget/copilot.js
+        run: |
+          curl -X GET $JSDELIVR_PURGE_URL
